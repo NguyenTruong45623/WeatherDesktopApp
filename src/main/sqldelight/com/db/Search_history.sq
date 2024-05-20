@@ -1,0 +1,36 @@
+DropBpTable:
+DROP TABLE IF EXISTS SearchHistory;
+
+CREATE TABLE SearchHistory (
+  id INTEGER PRIMARY KEY NOT NULL,
+  city TEXT NOT NULL,
+  temp REAL ,
+  event_time TEXT
+);
+
+CREATE INDEX searchHistory_City ON SearchHistory(city);
+
+SelectAll:
+SELECT * FROM SearchHistory;
+
+-- Select record from bp by id
+SelectSearchHistoryById:
+SELECT * FROM SearchHistory WHERE id = ?;
+
+-- Insert or replace record in bp
+InsertSearchHistoryByValues:
+INSERT OR REPLACE INTO SearchHistory(id, city, temp, event_time)
+VALUES (?, ?, ?,?);
+
+-- Insert or replace record in bp using an object
+InsertSearchHistoryByObject:
+INSERT OR REPLACE INTO SearchHistory(id, city, temp, event_time)
+VALUES ?;
+
+-- Delete record from bp by id
+DeleteSearchHistory:
+DELETE FROM SearchHistory WHERE id = ?;
+
+-- Delete all records from bp
+DeleteAllSearchHistory:
+DELETE FROM SearchHistory;
